@@ -1,0 +1,105 @@
+
+.flower {
+  position: relative;
+  width: clamp(64px, 13vw, 112px);
+  height: 245px;
+  flex-shrink: 0;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  transform-origin: bottom center;
+  animation: sway 3s ease-in-out infinite alternate;
+  animation-delay: var(--sway-delay);
+}
+
+.flower-head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1;
+  transform-origin: center bottom;
+  animation: bloom 1.2s cubic-bezier(.2, .8, .2, 1) both;
+  animation-delay: var(--bloom-delay);
+}
+
+.petal {
+  position: absolute;
+  top: 2%;
+  left: 28.5%;
+  width: 43%;
+  height: 49%;
+  border-radius: 50% 50% 42% 42%;
+  background: var(--petal-color);
+  transform-origin: 50% 100%;
+  transform: rotate(calc(var(--petal-index) * 45deg));
+  box-shadow: inset -3px -4px 8px #00000012;
+}
+
+.flower-center {
+  position: absolute;
+  top: 36%;
+  left: 36%;
+  width: 28%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #ffdc91;
+  box-shadow: 0 0 16px #ffe3a477;
+}
+
+.flower-stem {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  width: 5px;
+  height: 65%;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #477b59, #91b77b);
+}
+
+.leaf {
+  position: absolute;
+  width: 27px;
+  height: 14px;
+  background: #81ad79;
+  border-radius: 100% 0 100% 0;
+}
+
+.leaf-left {
+  top: 35%;
+  right: 0;
+  transform: translateX(-2px) rotate(-25deg);
+}
+
+.leaf-right {
+  top: 60%;
+  left: 0;
+  transform: translateX(-1px) rotate(25deg) scaleX(-1);
+}
+
+.flower:hover .flower-head {
+  filter: brightness(1.15);
+}
+
+.flower:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+  border-radius: 12px;
+}
+
+@keyframes bloom {
+  from { transform: scale(0) rotate(-25deg); }
+  to { transform: scale(1) rotate(0); }
+}
+
+@keyframes sway {
+  from { rotate: -3deg; }
+  to { rotate: 3deg; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flower, .flower-head {
+    animation: none;
+  }
+}
